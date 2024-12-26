@@ -1,0 +1,10 @@
+.idea/
+bin/
+*_mock.go
+*.xlsx
+.DS_Store
+
+**/*.log
+config/*.toml
+test
+test.pub
