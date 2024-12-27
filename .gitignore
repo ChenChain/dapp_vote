@@ -8,3 +8,5 @@ bin/
 config/*.toml
 test
 test.pub
+
+./vote_fe/node_modules
