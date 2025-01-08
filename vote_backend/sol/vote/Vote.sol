@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract DecentralizedVoting {
+contract Vote {
     // 候选人
     struct Candidate {
         string name;

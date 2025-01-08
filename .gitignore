@@ -10,3 +10,8 @@ test
 test.pub
 
 ./vote_fe/node_modules
+
+*.abi
+*.bin
+./vote_backend/sol/*/*.abi
+./vote_backend/sol/*/*.bin
