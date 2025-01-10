@@ -13,7 +13,10 @@ func main() {
 
 	r.GET("/get", handler.GetCandidates)
 	r.GET("/add", handler.AddCandidate)
-	r.GET("/vote", handler.VoteCandidate)
+	r.GET("/admin_vote", handler.AdminVoteCandidate)
+	r.GET("/vote", handler.FrontVote)
+
+	r.POST("broadcast", handler.BroadcastTransaction)
 
 	r.Run(":8080")
 }

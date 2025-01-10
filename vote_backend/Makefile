@@ -5,3 +5,6 @@ generate_sol_go_code:
 
 deploy_contract:
 	go run ./cmd/deploy_contract.go
+
+http_server:
+	go run ./main.go

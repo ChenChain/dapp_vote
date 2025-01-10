@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/ecdsa"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"log"
 	"math/big"
@@ -40,4 +41,16 @@ func GetDefaultAuth(ctx context.Context) *bind.TransactOpts {
 	auth.GasLimit = uint64(30000000) // in units
 	auth.GasPrice = gasPrice
 	return auth
+}
+
+func GetNonceGas(ctx context.Context, publicKeyStr string) (uint64, *big.Int, error) {
+	nonce, err := Cli().PendingNonceAt(ctx, common.HexToAddress(publicKeyStr))
+	if err != nil {
+		return 0, nil, err
+	}
+	gas, err := Cli().SuggestGasPrice(ctx)
+	if err != nil {
+		return 0, nil, err
+	}
+	return nonce, gas, nil
 }
