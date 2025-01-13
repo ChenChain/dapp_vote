@@ -3,6 +3,7 @@ import {decodeBase64, ethers} from "ethers";
 
 // 输入私钥
 const privateKey = "0x8166f546bab6da521a8369cab06c5d2b9e46670292d85c875ee9ec20e84ffb61"; // 示例私钥
+const publickey = "0xcd3B766CCDd6AE721141F452C550Ca635964ce71"; // 示例私钥
 
 // 获取钱包实例
 async function getWallet(privateKey) {
@@ -13,7 +14,7 @@ async function getWallet(privateKey) {
 
 // 调用后端接口获取交易数据
 async function fetchTransactionData() {
-    const response = await fetch("http://localhost:8080/vote?index=0", {
+    const response = await fetch("http://localhost:8080/vote?index=0&publickey=" + publickey, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
@@ -32,9 +33,11 @@ async function signTransaction(transactionData, wallet) {
         to: transactionData.to,
         data: data,
         nonce: transactionData.nonce,
-        gasLimit: transactionData.gasLimit,
-        gasPrice: transactionData.gas
+        gasLimit: 30000000,
+        gasPrice: transactionData.gas,
+        chainId: 31337,
     };
+
 
     // 签名交易
     const signedTx = await wallet.signTransaction(tx);

@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -16,9 +17,6 @@ type BroadcastRequest struct {
 
 // BroadcastTransaction 广播交易
 func BroadcastTransaction(c *gin.Context) {
-	//a, b := io.ReadAll(c.Request.Body)
-	//log.Println("a", a, b)
-	//log.Println("a", string(a), b)
 	var req BroadcastRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request body"})
@@ -28,8 +26,19 @@ func BroadcastTransaction(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "SignedTransaction is empty"})
 		return
 	}
-	var signed *types.Transaction
-	if util.ReturnErrResp(c, signed.UnmarshalBinary([]byte(req.SignedTransaction))) {
+
+	// 解析签名交易
+	rawTx, err := hexutil.Decode(req.SignedTransaction)
+	if err != nil {
+		log.Println("Invalid signed transaction:", err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid signed transaction"})
+		return
+	}
+
+	// 发送交易
+
+	signed := &types.Transaction{}
+	if util.ReturnErrResp(c, signed.UnmarshalBinary(rawTx)) {
 		return
 	}
 	log.Println("send tx", "signed", signed)
