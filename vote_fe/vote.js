@@ -2,9 +2,8 @@ import {decodeBase64, ethers} from "ethers";
 
 
 // 输入私钥
-const privateKey = "0x8166f546bab6da521a8369cab06c5d2b9e46670292d85c875ee9ec20e84ffb61"; // 示例私钥
+const privateKey = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"; // 示例私钥
 const publickey = "0xcd3B766CCDd6AE721141F452C550Ca635964ce71"; // 示例私钥
-
 // 获取钱包实例
 async function getWallet(privateKey) {
     // 使用私钥创建钱包对象

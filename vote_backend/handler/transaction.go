@@ -34,6 +34,7 @@ func BroadcastTransaction(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid signed transaction"})
 		return
 	}
+	log.Println("BroadcastTransaction get rawTx", rawTx)
 
 	// 发送交易
 
