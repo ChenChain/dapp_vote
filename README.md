@@ -1,6 +1,6 @@
 # Vote In DAPP
 
-> 你的第一个DAPP项目
+> 年轻人的第一个DAPP项目
 
 
 ## 本地网络

@@ -45,9 +45,9 @@ document.getElementById("vote").addEventListener("click", async () => {
             from: publicKey,
             to: transactionData.to,
             data: decodedData,
-            gas: `0x${parseInt(transactionData.gas).toString(16)}`,
-            gasLimit: `0x${parseInt('30000000').toString(16)}`,
-            nonce: `0x${parseInt(transactionData.nonce).toString(16)}`,
+            // gas: `0x${parseInt(transactionData.gas).toString(16)}`,
+            // gasLimit: `0x${parseInt('30000000').toString(16)}`,
+            // nonce: `0x${parseInt(transactionData.nonce).toString(16)}`,
         };
         console.log(tx)
 
