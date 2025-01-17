@@ -28,6 +28,7 @@ func main() {
 	r.GET("/vote", handler.FrontVote)
 
 	r.POST("broadcast", handler.BroadcastTransaction)
+	r.GET("balance", handler.GetEthTokenBalanceOf)
 
 	r.Run(":8080")
 }

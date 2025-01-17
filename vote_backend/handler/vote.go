@@ -65,7 +65,7 @@ func FrontVote(c *gin.Context) {
 		Data     []byte `json:"data"`
 		Nonce    uint64 `json:"nonce"`
 		Gas      uint64 `json:"gas"`
-		GasLimit uint64 `json:"gas_limit"`
+		GasLimit uint64 `json:"gasLimit"`
 	}
 	index := c.GetInt64("index")
 	publicKeyStr := c.Query("publickey")
@@ -87,7 +87,7 @@ func FrontVote(c *gin.Context) {
 		Data:     bs,
 		Nonce:    nonce,
 		Gas:      gas.Uint64(),
-		GasLimit: 300000,
+		GasLimit: gas.Uint64() + 1000000,
 	}
 
 	log.Println(res.Data)

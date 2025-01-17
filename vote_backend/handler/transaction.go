@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/gin-gonic/gin"
@@ -48,4 +49,16 @@ func BroadcastTransaction(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"transactionHash": signed.Hash().Hex()})
+}
+
+func GetEthTokenBalanceOf(c *gin.Context) {
+	publicKeyStr := c.Query("publickey")
+
+	balance, err := eth.Cli().BalanceAt(c, common.HexToAddress(publicKeyStr), nil)
+	if util.ReturnErrResp(c, err) {
+		return
+	}
+	util.ReturnResp(c, map[string]int64{
+		"balance": balance.Int64(),
+	})
 }

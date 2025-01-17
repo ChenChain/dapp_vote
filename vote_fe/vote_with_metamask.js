@@ -46,7 +46,7 @@ document.getElementById("vote").addEventListener("click", async () => {
             to: transactionData.to,
             data: decodedData,
             gas: `0x${parseInt(transactionData.gas).toString(16)}`,
-            // gasLimit: `0x${parseInt('30000000').toString(16)}`,
+            gasLimit: `0x${parseInt('30000000').toString(16)}`,
             nonce: `0x${parseInt(transactionData.nonce).toString(16)}`,
         };
         console.log(tx)
@@ -60,6 +60,6 @@ document.getElementById("vote").addEventListener("click", async () => {
         console.log("Transaction sent successfully:", signedTransaction);
     } catch (error) {
         console.error("Error during transaction:", error);
-        document.getElementById("output").textContent = "Transaction failed.";
+        document.getElementById("output").textContent = "Transaction failed. "+error.toString();
     }
 });
