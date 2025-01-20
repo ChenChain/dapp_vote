@@ -1,17 +1,12 @@
-import { ethers } from "hardhat";
+const { ethers } = require("hardhat");
 
 async function main() {
-    const [deployer] = await ethers.getSigners();
-    console.log("Deploying contracts with the account:", deployer.address);
 
-    const Token = await ethers.getContractFactory("Audi");
-    const token = await Token.deploy(); // 传入初始供应量
-    console.log("Token deployed to:", token.address);
+    const Counter = await ethers.getContractFactory("Audi");
+    const counter = await Counter.deploy();
+    await counter.waitForDeployment();
+
+    console.log("Counter address:", await counter.getAddress());
 }
 
-main()
-    .then(() => process.exit(0))
-    .catch((error: Error) => {
-        console.error(error);
-        process.exit(1);
-    });
+main();
