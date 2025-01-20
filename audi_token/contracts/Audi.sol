@@ -9,7 +9,7 @@ contract Audi is ERC20 {
 
     // audi token
     constructor() ERC20("Audi", "ATK") {
-        audiTotalSupply = 1000*1000*1000*1000;
+        audiTotalSupply = 1000 * 1000 * 1000 * 10 ** uint256(decimals);
         audiOwner = msg.sender;
         // 通过 _mint 函数铸造初始供应量的代币到部署合约的地址
         _mint(msg.sender, audiTotalSupply);
